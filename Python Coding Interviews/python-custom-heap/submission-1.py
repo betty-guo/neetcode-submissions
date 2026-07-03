@@ -1,0 +1,23 @@
+import heapq
+from typing import List
+
+
+# note that we can also just use the max_heap impleemntation from before, since now we just store both values in the list
+
+def get_reverse_sorted(nums: List[int]) -> List[int]:
+    heap = []
+    for num in nums:
+        heapq.heappush(heap, (-num, num)) # use -num as the priority to turn it into max heap
+    
+    output = []
+    while heap:
+        output.append(heapq.heappop(heap)[1]) # return the second value, which is the actual number
+    
+    return output
+
+
+
+# do not modify below this line
+print(get_reverse_sorted([1, 2, 3]))
+print(get_reverse_sorted([5, 6, 4, 2, 7, 3, 1]))
+print(get_reverse_sorted([5, 6, -4, 2, 4, 7, -3, -1]))
